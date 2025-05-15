@@ -1,15 +1,13 @@
 package com.Practica.Practica.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Setter
 @Getter
+@Table(name = "users")
 public class User {
 
     @Id
@@ -23,7 +21,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password, Long id) {
+    public User(Long id, String name, String password) {
         this.name = name;
         this.password = password;
         this.id = id;
