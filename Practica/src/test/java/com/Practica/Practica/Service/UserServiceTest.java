@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,6 +43,20 @@ class UserServiceTest {
 
     @Test
     void shouldGetAllUsers() {
+        List<User> users = List.of(
+                new User(1L,"Braian","1234"),
+                new User(2L,"Victoria","1234")
+        );
+
+        when(userRepository.findAll()).thenReturn(users);
+
+        List<User> result = userService.getAllUsers();
+
+        assertEquals(2,result.size());
+        assertEquals("Victoria",result.get(1).getName());
+        verify(userRepository).findAll();
+
+
     }
 
     @Test
