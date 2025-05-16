@@ -15,8 +15,8 @@ Este proyecto está orientado a practicar conceptos clave de pruebas unitarias y
 - Java 17+
 - JUnit 5
 - Mockito
-- Maven / Gradle
-- IDE: IntelliJ IDEA / Visual Studio Code
+- Maven
+- IDE: IntelliJ IDEA
 
 ## 📁 Estructura del Proyecto
 
