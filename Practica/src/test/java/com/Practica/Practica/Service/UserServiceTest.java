@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -61,9 +62,27 @@ class UserServiceTest {
 
     @Test
     void shouldGetUserById() {
+        Long id = 1l;
+        User user = new User(id,"Braian","1234");
+
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
+
+        Optional<User> result = userService.getUserById(id);
+
+        assertTrue(result.isPresent());
+        assertEquals(1l,result.get().getId());
+        assertEquals("Braian",result.get().getName());
+        assertEquals("1234",result.get().getPassword());
+        verify(userRepository).findById(id);
+
     }
 
     @Test
     void shouldDeleteUser() {
+        User user= new User(1L,"Braian","1234");
+
+        userService.deleteUser(user);
+
+        verify(userRepository).delete(user);
     }
 }
