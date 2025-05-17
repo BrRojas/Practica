@@ -1,4 +1,4 @@
-package com.Practica.Practica.Model;
+package com.Practica.Practica.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
