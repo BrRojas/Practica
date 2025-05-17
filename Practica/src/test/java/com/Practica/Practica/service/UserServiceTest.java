@@ -1,7 +1,7 @@
-package com.Practica.Practica.Service;
+package com.Practica.Practica.service;
 
-import com.Practica.Practica.Model.User;
-import com.Practica.Practica.Repository.UserRepository;
+import com.Practica.Practica.model.User;
+import com.Practica.Practica.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -67,12 +67,11 @@ class UserServiceTest {
 
         when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
-        Optional<User> result = userService.getUserById(id);
+        User result = userService.getUserById(id);
 
-        assertTrue(result.isPresent());
-        assertEquals(1l,result.get().getId());
-        assertEquals("Braian",result.get().getName());
-        assertEquals("1234",result.get().getPassword());
+        assertEquals(1l,result.getId());
+        assertEquals("Braian",result.getName());
+        assertEquals("1234",result.getPassword());
         verify(userRepository).findById(id);
 
     }

@@ -1,7 +1,8 @@
-package com.Practica.Practica.Service;
+package com.Practica.Practica.service;
 
-import com.Practica.Practica.Model.User;
-import com.Practica.Practica.Repository.UserRepository;
+import com.Practica.Practica.exception.UserNotFoundException;
+import com.Practica.Practica.model.User;
+import com.Practica.Practica.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +25,9 @@ public class UserService {
     }
 
 
-    public Optional<User> getUserById(Long id){
-        return userRepository.findById(id);
+    public User getUserById(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con ID " + id));
     };
 
 
