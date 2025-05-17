@@ -1,41 +1,17 @@
 package com.Practica.Practica.service;
 
-import com.Practica.Practica.exception.UserNotFoundException;
-import com.Practica.Practica.model.User;
-import com.Practica.Practica.repository.UserRepository;
+import com.Practica.Practica.dto.UserDTO;
 
 import java.util.List;
-import java.util.Optional;
 
-public class UserService {
+public interface UserService {
 
-    private final UserRepository userRepository;
+    UserDTO saveUser(UserDTO userDTO);
 
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
+    List<UserDTO> getAllUsers();
 
-    public User saveUser(User user){
-        return userRepository.save(user);
-    };
+    UserDTO getUserById(Long id);
 
-
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
-
-
-    public User getUserById(Long id){
-        return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con ID " + id));
-    };
-
-
-
-    public void deleteUser(User user){
-        userRepository.delete(user);
-    }
-
-
+    void deleteUserDTO(UserDTO userDTO);
 
 }

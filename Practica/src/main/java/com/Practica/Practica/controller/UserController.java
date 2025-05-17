@@ -2,9 +2,8 @@ package com.Practica.Practica.controller;
 
 import com.Practica.Practica.dto.UserDTO;
 import com.Practica.Practica.model.User;
-import com.Practica.Practica.service.UserService;
+import com.Practica.Practica.service.UserServiceImpl;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,29 +13,29 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
 
     @PatchMapping
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO dto){
-        return ResponseEntity.ok(userService.saveUser(dto));
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO){
+        return ResponseEntity.ok(userServiceImpl.saveUser(userDTO));
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userServiceImpl.getUserById(id));
     }
 
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        return ResponseEntity.ok(userServiceImpl.getAllUsers());
     }
 
 
